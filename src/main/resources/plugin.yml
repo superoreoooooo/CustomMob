@@ -1,0 +1,6 @@
+name: CustomMob
+version: '${project.version}'
+main: xyz.oreodev.custommob.CustomMobMain
+api-version: 1.18
+commands:
+  npc:
