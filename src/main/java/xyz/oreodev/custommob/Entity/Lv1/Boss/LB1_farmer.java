@@ -1,37 +1,42 @@
-package xyz.oreodev.custommob.mobs;
+package xyz.oreodev.custommob.Entity.Lv1.Boss;
 
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerData;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerType;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R2.attribute.CraftAttributeMap;
 import org.bukkit.entity.Entity;
+import org.checkerframework.checker.units.qual.A;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-public class L1_cow extends Cow {
+public class LB1_farmer extends Villager {
 
-    public L1_cow(Location loc) {
-        super(EntityType.COW, ((CraftWorld) loc.getWorld()).getHandle());
+    public LB1_farmer(Location loc) {
+        super(EntityType.VILLAGER, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.setAggressive(true);
-        this.setCustomName(new TextComponent(ChatColor.RED + "COW"));
+        this.setCustomName(new TextComponent(ChatColor.RED + "FARMER"));
         this.setCustomNameVisible(true);
-        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
-        this.setHealth(100F);
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
+        this.setHealth(500F);
+        this.setVillagerData(new VillagerData(VillagerType.PLAINS, VillagerProfession.FARMER, 0));
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(25.0);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -41,8 +46,10 @@ public class L1_cow extends Cow {
     public void registerGoals() {
         this.getAttributes().getDirtyAttributes().add(new AttributeInstance(Attributes.ATTACK_DAMAGE, attributeInstance -> attributeInstance.setBaseValue(1.0)));
         this.getAttributes().getDirtyAttributes().add(new AttributeInstance(Attributes.FOLLOW_RANGE, attributeInstance -> attributeInstance.setBaseValue(1.0)));
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
 
+        this.goalSelector.removeAllGoals();
+        this.targetSelector.removeAllGoals();
+        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, ServerPlayer.class, true));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, ServerPlayer.class, 11.0F));
