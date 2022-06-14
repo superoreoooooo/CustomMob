@@ -52,7 +52,7 @@ public class L1_cow extends Cow {
 
     static {
         try {
-            attributeField = AttributeMap.class.getDeclaredField("getDirtyAttributes");
+            attributeField = AttributeMap.class.getDeclaredField("b");
             attributeField.setAccessible(true);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
