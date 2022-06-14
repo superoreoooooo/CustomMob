@@ -7,10 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import xyz.oreodev.custommob.Entity.Lv1.Mobs.LM1_chicken;
-import xyz.oreodev.custommob.Entity.Lv1.Mobs.LM1_cow;
-import xyz.oreodev.custommob.Entity.Lv1.Mobs.LM1_pig;
-import xyz.oreodev.custommob.Entity.Lv1.Mobs.LM1_sheep;
+import xyz.oreodev.custommob.Entity.Lv1.Mobs.*;
+import xyz.oreodev.custommob.Entity.Lv1.Mobs.LM2_wolf;
 
 public class mobSpawner {
     public void summonMob(CommandSender sender, String mobName, Location location) {
@@ -36,6 +34,9 @@ public class mobSpawner {
                     LM1_chicken chicken = new LM1_chicken(location);
                     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(chicken, CreatureSpawnEvent.SpawnReason.CUSTOM);
                     break;
+                case "LM2_WOLF":
+                    LM2_wolf wolf = new LM2_wolf(location);
+                    ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(wolf, CreatureSpawnEvent.SpawnReason.CUSTOM);
                 default:
                     sender.sendMessage(ChatColor.RED + "ERROR_SPAWNING_MOB");
             }
