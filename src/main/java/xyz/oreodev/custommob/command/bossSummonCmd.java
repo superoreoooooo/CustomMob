@@ -17,7 +17,7 @@ public class bossSummonCmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            if (args.length == 0) spawner.summonMob(player, args[0], player.getLocation());
+            if (args.length == 0) spawner.summonMob(player, "test", player.getLocation());
             if (args.length >= 4) {
                 player.sendMessage(args[0] + args[1] + args[2] + args[3]);
                 spawner.summonMob(player, args[0], new Location(player.getWorld(), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])));

@@ -17,12 +17,16 @@ import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R2.attribute.CraftAttributeMap;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.checkerframework.checker.units.qual.A;
 
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.UUID;
 
 public class LB1_farmer extends Villager {
+
+    public static UUID farmerUUID;
 
     public LB1_farmer(Location loc) {
         super(EntityType.VILLAGER, ((CraftWorld) loc.getWorld()).getHandle());
@@ -32,11 +36,12 @@ public class LB1_farmer extends Villager {
         this.setCustomNameVisible(true);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
         this.setHealth(500F);
-        this.setVillagerData(new VillagerData(VillagerType.PLAINS, VillagerProfession.FARMER, 0));
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
             this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(25.0);
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.1);
+            farmerUUID = this.getUUID();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -49,10 +54,14 @@ public class LB1_farmer extends Villager {
 
         this.goalSelector.removeAllGoals();
         this.targetSelector.removeAllGoals();
+
         this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, ServerPlayer.class, true));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, ServerPlayer.class, 11.0F));
+        this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1.0F));
+        this.setVillagerData(new VillagerData(VillagerType.PLAINS, VillagerProfession.FARMER, 0));
     }
 
     private static Field attributeField;

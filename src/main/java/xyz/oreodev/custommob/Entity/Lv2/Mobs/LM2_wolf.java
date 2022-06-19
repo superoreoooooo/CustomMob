@@ -23,7 +23,7 @@ public class LM2_wolf extends Wolf {
         super(EntityType.WOLF, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.setAggressive(true);
-        this.setCustomName(new TextComponent(ChatColor.GREEN + "TEST"));
+        this.setCustomName(new TextComponent(ChatColor.RED + "WOLF"));
         this.setCustomNameVisible(true);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(150);
         this.setHealth(150F);
@@ -40,11 +40,12 @@ public class LM2_wolf extends Wolf {
     public void registerGoals() {
         this.getAttributes().getDirtyAttributes().add(new AttributeInstance(Attributes.ATTACK_DAMAGE, attributeInstance -> attributeInstance.setBaseValue(1.0)));
         this.getAttributes().getDirtyAttributes().add(new AttributeInstance(Attributes.FOLLOW_RANGE, attributeInstance -> attributeInstance.setBaseValue(1.0)));
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
-
+        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.4D, false));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, ServerPlayer.class, true));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, ServerPlayer.class, 11.0F));
+        this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1.0F));
     }
 
     private static Field attributeField;

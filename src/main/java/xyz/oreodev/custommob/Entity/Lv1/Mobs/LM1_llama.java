@@ -7,7 +7,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.horse.Llama;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R2.attribute.CraftAttributeMap;
@@ -16,16 +17,16 @@ import org.bukkit.entity.Entity;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-public class LM1_pig extends Pig {
+public class LM1_llama extends Llama {
 
-    public LM1_pig(Location loc) {
-        super(EntityType.PIG, ((CraftWorld) loc.getWorld()).getHandle());
+    public LM1_llama(Location loc) {
+        super(EntityType.LLAMA, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.setAggressive(true);
-        this.setCustomName(new TextComponent(ChatColor.RED + "PIG"));
+        this.setCustomName(new TextComponent(ChatColor.RED + "LLAMA"));
         this.setCustomNameVisible(true);
-        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(70);
-        this.setHealth(70F);
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);
+        this.setHealth(40F);
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
@@ -37,6 +38,7 @@ public class LM1_pig extends Pig {
 
     @Override
     public void registerGoals() {
+        this.goalSelector.removeAllGoals();
         this.getAttributes().getDirtyAttributes().add(new AttributeInstance(Attributes.ATTACK_DAMAGE, attributeInstance -> attributeInstance.setBaseValue(10.0)));
         this.getAttributes().getDirtyAttributes().add(new AttributeInstance(Attributes.FOLLOW_RANGE, attributeInstance -> attributeInstance.setBaseValue(1.0)));
         this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.4D, false));

@@ -1,4 +1,4 @@
-package xyz.oreodev.custommob.listener;
+package xyz.oreodev.custommob.listener.boss;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
