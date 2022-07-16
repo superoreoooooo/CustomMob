@@ -1,7 +1,7 @@
 package xyz.oreodev.custommob.Entity.Lv1.Mobs;
 
 import net.md_5.bungee.api.ChatColor;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,8 +11,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.level.Level;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R2.attribute.CraftAttributeMap;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.attribute.CraftAttributeMap;
 import org.bukkit.entity.Entity;
 
 import java.io.File;
@@ -25,7 +25,7 @@ public class LM1_cow extends Cow {
         super(EntityType.COW, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.setAggressive(true);
-        this.setCustomName(new TextComponent(ChatColor.RED + "COW"));
+        this.setCustomName(Component.literal(ChatColor.RED + "COW"));
         this.setCustomNameVisible(true);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
         this.setHealth(100F);
@@ -62,7 +62,7 @@ public class LM1_cow extends Cow {
     }
 
     public void registerGenericAttribute(Entity entity, org.bukkit.attribute.Attribute attribute) throws IllegalAccessException {
-        AttributeMap attributeMap = ((org.bukkit.craftbukkit.v1_18_R2.entity.CraftLivingEntity) entity).getHandle().getAttributes();
+        AttributeMap attributeMap = ((org.bukkit.craftbukkit.v1_19_R1.entity.CraftLivingEntity) entity).getHandle().getAttributes();
         Map<Attribute, AttributeInstance> map = (Map<Attribute, AttributeInstance>) attributeField.get(attributeMap);
         Attribute attribute1 = CraftAttributeMap.toMinecraft(attribute);
         AttributeInstance attributeModifier = new AttributeInstance(attribute1, AttributeInstance::getAttribute);
