@@ -43,6 +43,10 @@ public class mobSpawner {
                     LM2_wolf wolf = new LM2_wolf(location);
                     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(wolf, CreatureSpawnEvent.SpawnReason.CUSTOM);
                     break;
+                case BOW:
+                    LM2_bow bow = new LM2_bow(location);
+                    ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(bow, CreatureSpawnEvent.SpawnReason.CUSTOM);
+                    break;
                 default:
                     sender.sendMessage(ChatColor.RED + "ERROR_SPAWNING_MOB");
             }

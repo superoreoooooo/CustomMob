@@ -17,12 +17,15 @@ import org.bukkit.craftbukkit.v1_19_R1.attribute.CraftAttributeMap;
 import org.bukkit.entity.Entity;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 public class LB1_farmer extends Villager {
 
     public static UUID farmerUUID;
+
+    public static List<UUID> farmerUUIDList;
 
     public LB1_farmer(Location loc) {
         super(EntityType.VILLAGER, ((CraftWorld) loc.getWorld()).getHandle());
