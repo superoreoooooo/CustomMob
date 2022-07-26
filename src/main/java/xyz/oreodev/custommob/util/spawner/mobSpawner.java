@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.checkerframework.checker.units.qual.C;
 import xyz.oreodev.custommob.Entity.Lv1.Mobs.*;
 import xyz.oreodev.custommob.Entity.Lv2.Mobs.*;
 import xyz.oreodev.custommob.Entity.enums.enumMob;
@@ -47,6 +48,9 @@ public class mobSpawner {
                     LM2_bow bow = new LM2_bow(location);
                     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(bow, CreatureSpawnEvent.SpawnReason.CUSTOM);
                     break;
+                case SPEAR:
+                    LM2_spear spear = new LM2_spear(location);
+                    ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(spear, CreatureSpawnEvent.SpawnReason.CUSTOM);
                 default:
                     sender.sendMessage(ChatColor.RED + "ERROR_SPAWNING_MOB");
             }
