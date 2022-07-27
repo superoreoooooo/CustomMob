@@ -30,7 +30,7 @@ public class LM1_llama extends Llama {
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
-            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(10.0);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(20);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

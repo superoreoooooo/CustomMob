@@ -51,6 +51,11 @@ public class mobSpawner {
                 case SPEAR:
                     LM2_spear spear = new LM2_spear(location);
                     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(spear, CreatureSpawnEvent.SpawnReason.CUSTOM);
+                    break;
+                case PRIEST:
+                    LM2_priest priest = new LM2_priest(location);
+                    ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(priest, CreatureSpawnEvent.SpawnReason.CUSTOM);
+                    break;
                 default:
                     sender.sendMessage(ChatColor.RED + "ERROR_SPAWNING_MOB");
             }

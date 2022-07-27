@@ -23,10 +23,6 @@ import java.util.UUID;
 
 public class LB1_farmer extends Villager {
 
-    public static UUID farmerUUID;
-
-    public static List<UUID> farmerUUIDList;
-
     public LB1_farmer(Location loc) {
         super(EntityType.VILLAGER, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
@@ -38,9 +34,8 @@ public class LB1_farmer extends Villager {
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
-            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(25.0);
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.1);
-            farmerUUID = this.getUUID();
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(50);
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.3);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -60,7 +55,7 @@ public class LB1_farmer extends Villager {
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, ServerPlayer.class, 11.0F));
         this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1.0F));
-        this.setVillagerData(new VillagerData(VillagerType.PLAINS, VillagerProfession.FARMER, 0));
+        this.setVillagerData(new VillagerData(VillagerType.PLAINS, VillagerProfession.FARMER, 1));
     }
 
     private static Field attributeField;

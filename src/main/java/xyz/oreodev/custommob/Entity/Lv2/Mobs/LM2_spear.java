@@ -31,7 +31,7 @@ public class LM2_spear extends Drowned {
         this.setAggressive(true);
         this.setCustomName(Component.literal(ChatColor.BLUE + "SPEAR"));
         this.setCustomNameVisible(true);
-        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(400);
         this.setHealth(400F);
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(80.0);
         this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(TRIDENT));

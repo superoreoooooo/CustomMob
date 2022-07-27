@@ -22,9 +22,8 @@ public final class CustomMobMain extends JavaPlugin {
         getCommand("boss").setExecutor(new bossSummonCmd());
         getCommand("boss").setTabCompleter(new bossCmdComplete());
         Bukkit.getServer().getPluginManager().registerEvents(new DamageListener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new DamageListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new L_LB1_farmer(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new L_LM2_bow(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new L_LM2_bow(this), this);
     }
 
     @Override

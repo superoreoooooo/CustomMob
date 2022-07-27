@@ -29,7 +29,7 @@ public class LM1_chicken extends Chicken {
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
-            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(5.0);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(10);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

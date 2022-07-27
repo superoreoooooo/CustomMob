@@ -30,7 +30,7 @@ public class LM2_wolf extends Wolf {
         try {
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_ATTACK_DAMAGE);
             registerGenericAttribute(this.getBukkitEntity(), org.bukkit.attribute.Attribute.GENERIC_FOLLOW_RANGE);
-            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(15.0);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(30);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
