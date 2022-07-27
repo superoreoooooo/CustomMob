@@ -25,7 +25,7 @@ public class L_LM2_bow implements Listener {
 
     @EventHandler
     public void onHit(ProjectileHitEvent e) {
-        if (e.getEntity().getMetadata("bow").get(0).equals("bow")) {
+        if (e.getEntity().getMetadata("bow").get(0).equals(new FixedMetadataValue(plugin, "bow"))) {
             Bukkit.broadcastMessage("boom");
         }
     }
