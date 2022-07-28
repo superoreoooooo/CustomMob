@@ -1,10 +1,10 @@
-package xyz.oreodev.custommob.command.complete;
+package xyz.oreodev.custommob.command.completer;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.util.StringUtil;
-import xyz.oreodev.custommob.Entity.enums.enumBoss;
+import xyz.oreodev.custommob.Entity.enums.enumMob;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class bossCmdComplete implements TabCompleter {
-    List<String> COMMANDS = Stream.of(enumBoss.values()).map(Enum::name).collect(Collectors.toList());
+public class mobCmdComplete implements TabCompleter {
+    List<String> COMMANDS = Stream.of(enumMob.values()).map(Enum::name).collect(Collectors.toList());
 
 
     @Override
