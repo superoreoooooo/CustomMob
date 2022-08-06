@@ -93,22 +93,15 @@ public class LB2_spirit extends Ravager {
             @Override
             public void run() {
                 castSkill(spirit);
+                if (!spirit.isAlive()) {
+                    Bukkit.getScheduler().cancelTask(schedule);
+                }
             }
-        }, 0, 10);
+        }, 0, 200);
     }
 
-    BukkitScheduler coolDownSchedule = Bukkit.getScheduler();
-
-    public boolean checkSkillDelay(LB2_spirit spirit) {
-        if (coolDown.contains(spirit)) return true;
-        else {
-            coolDownSchedule.runTaskLaterAsynchronously(JavaPlugin.getPlugin(CustomMobMain.class), () -> coolDown.remove(spirit), 200);
-            return false;
-        }
-    }
 
     public void castSkill(LB2_spirit spirit) {
-        if (checkSkillDelay(spirit)) return;
         if (!spirit.isAlive()) return;
         for (Player player : spirit.getBukkitEntity().getWorld().getEntitiesByClass(Player.class)) {
             if (player.getGameMode() != GameMode.SURVIVAL) return;
