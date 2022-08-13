@@ -11,39 +11,23 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Ravager;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R1.attribute.CraftAttributeMap;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitScheduler;
 import xyz.oreodev.custommob.CustomMobMain;
-import xyz.oreodev.custommob.listener.boss.L_LB2_spirit;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class LB2_spirit extends Ravager {
 
     private final CustomMobMain plugin;
 
-    public static List<LB2_spirit> coolDown = new ArrayList<>();
-
-    public static List<Player> restraint = new ArrayList<>();
-
-    public static int schedule;
-
-
-    public LB2_spirit(Location loc, CustomMobMain plugin) {
+    public LB2_spirit(Location loc) {
         super(EntityType.RAVAGER, ((CraftWorld) loc.getWorld()).getHandle());
-        this.plugin = plugin;
+        this.plugin = JavaPlugin.getPlugin(CustomMobMain.class);
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.setAggressive(true);
         this.setCustomName(Component.literal(ChatColor.BLUE + "SPIRIT"));
@@ -53,7 +37,6 @@ public class LB2_spirit extends Ravager {
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(150);
         this.getAttribute(Attributes.ATTACK_KNOCKBACK).setBaseValue(50);
         registerGoals();
-        initialize(this);
     }
 
     @Override
@@ -86,33 +69,5 @@ public class LB2_spirit extends Ravager {
         Attribute attribute1 = CraftAttributeMap.toMinecraft(attribute);
         AttributeInstance attributeModifier = new AttributeInstance(attribute1, AttributeInstance::getAttribute);
         map.put(attribute1, attributeModifier);
-    }
-
-    public void initialize(LB2_spirit spirit) {
-        schedule = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                castSkill(spirit);
-                if (!spirit.isAlive()) {
-                    Bukkit.getScheduler().cancelTask(schedule);
-                }
-            }
-        }, 0, 200);
-    }
-
-
-    public void castSkill(LB2_spirit spirit) {
-        if (!spirit.isAlive()) return;
-        for (Player player : spirit.getBukkitEntity().getWorld().getEntitiesByClass(Player.class)) {
-            if (player.getGameMode() != GameMode.SURVIVAL) return;
-            if (player.getLocation().distance(spirit.getBukkitEntity().getLocation()) < 10) {
-                Location targetLoc = player.getLocation();
-                targetLoc.getWorld().spawnParticle(Particle.SCULK_SOUL, targetLoc, 100, 0, 0, 0);
-                player.sendTitle(ChatColor.BLUE + "속박되었습니다!", "");
-                if (restraint.contains(player)) return;
-                restraint.add(player);
-                Bukkit.getConsoleSender().sendMessage(spirit.getUUID() + "casted SKILL to " + player.getName());
-            }
-        }
     }
 }

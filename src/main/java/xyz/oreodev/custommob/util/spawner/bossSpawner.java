@@ -36,7 +36,7 @@ public class bossSpawner {
                     player.sendMessage(ChatColor.RED + "BOSS_SUMMONED");
                     break;
                 case SPIRIT:
-                    LB2_spirit spirit = new LB2_spirit(location, CustomMobMain.getPlugin(CustomMobMain.class));
+                    LB2_spirit spirit = new LB2_spirit(location);
                     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(spirit, CreatureSpawnEvent.SpawnReason.CUSTOM);
                     player.sendMessage(ChatColor.BLUE + "BOSS_SUMMONED");
                     break;

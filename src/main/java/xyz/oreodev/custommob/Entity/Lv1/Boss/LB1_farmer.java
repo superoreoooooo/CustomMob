@@ -17,9 +17,7 @@ import org.bukkit.craftbukkit.v1_19_R1.attribute.CraftAttributeMap;
 import org.bukkit.entity.Entity;
 
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class LB1_farmer extends Villager {
 
