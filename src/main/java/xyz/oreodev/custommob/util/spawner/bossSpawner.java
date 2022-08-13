@@ -11,13 +11,19 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import xyz.oreodev.custommob.CustomMobMain;
 import xyz.oreodev.custommob.Entity.Lv1.Boss.LB1_farmer;
 import xyz.oreodev.custommob.Entity.Lv2.Boss.LB2_spirit;
 import xyz.oreodev.custommob.Entity.enums.enumBoss;
 import xyz.oreodev.custommob.Entity.test.TestBoss;
+import xyz.oreodev.custommob.util.skill.Skill;
 
 public class bossSpawner {
+    private Skill skill;
+
+    public bossSpawner() {
+        this.skill = new Skill();
+    }
+
     public void summonMob(CommandSender sender, enumBoss bossName, Location location) {
         if (sender instanceof Player player) {
             if (location == null) {
@@ -43,6 +49,7 @@ public class bossSpawner {
                 default:
                     sender.sendMessage(ChatColor.RED + "ERROR_SPAWNING_BOSS");
             }
+            skill.initialize();
         }
     }
 }

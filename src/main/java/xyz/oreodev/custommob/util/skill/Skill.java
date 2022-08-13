@@ -16,18 +16,18 @@ import java.util.List;
 
 public class Skill {
 
-    JavaPlugin plugin = JavaPlugin.getPlugin(CustomMobMain.class);
+    private final JavaPlugin plugin = JavaPlugin.getPlugin(CustomMobMain.class);
     public static List<LivingEntity> skillCasters = new ArrayList<>();
 
     //바인드
     public static List<LivingEntity> bindCooldownCasters = new ArrayList<>();
     public static List<Player> bindPlayers = new ArrayList<>();
-    public static int skillId = 0;
 
     public void addCasters() {
         String worldName = plugin.getConfig().getString("settings.world");
         for (LivingEntity livingEntity : Bukkit.getWorld(worldName).getLivingEntities()) {
             for (skillEntity entity : skillEntity.values()) {
+                if (livingEntity.getCustomName() != null)
                 if (livingEntity.getCustomName().contains(entity.toString())) {
                     skillCasters.add(livingEntity);
                 }
@@ -37,7 +37,7 @@ public class Skill {
 
     public void initialize() {
         addCasters();
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, new Runnable() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
                 for (LivingEntity livingEntity : skillCasters) {

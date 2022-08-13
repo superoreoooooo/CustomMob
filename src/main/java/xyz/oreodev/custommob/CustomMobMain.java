@@ -23,8 +23,6 @@ public final class CustomMobMain extends JavaPlugin {
     public final String bar = "====================================================";
     public final String prefix = "[CustomMob] ";
 
-    Skill skill = new Skill();
-
     @Override
     public void onEnable() {
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + prefix + bar);
@@ -42,18 +40,9 @@ public final class CustomMobMain extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new L_LM2_bow(this), this);
         Bukkit.getServer().getPluginManager().registerEvents(new L_LB2_spirit(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new skillBind(), this);
-
-        skill.initialize();
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + prefix + bar);
-        File file = new File("plugins/original-customMob-1.0-SNAPSHOT.jar");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + prefix + "removing File : " + file.getName());
-        file.delete();
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + prefix + "removed File : " + file.getName());
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + prefix + "OFF");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + prefix + bar);
     }
 }
