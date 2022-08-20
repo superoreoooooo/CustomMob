@@ -52,7 +52,7 @@ public class Skill {
                     execute(livingEntity, skillCasters.get(livingEntity).getSkill());
                 }
             }
-        },0, 5);
+        },0, 2);
     }
 
     public void execute(LivingEntity livingEntity, skills skill) {
