@@ -17,12 +17,6 @@ import xyz.oreodev.custommob.Entity.test.TestBoss;
 import xyz.oreodev.custommob.util.skill.Skill;
 
 public class bossSpawner {
-    private Skill skill;
-
-    public bossSpawner() {
-        this.skill = new Skill();
-    }
-
     public void summonMob(CommandSender sender, enumBoss bossName, Location location) {
         if (sender instanceof Player player) {
             if (location == null) {
@@ -48,7 +42,6 @@ public class bossSpawner {
                 default:
                     sender.sendMessage(ChatColor.RED + "ERROR_SPAWNING_BOSS");
             }
-            skill.initialize();
         }
     }
 }

@@ -22,7 +22,7 @@ public class TestMob extends MushroomCow {
         super(EntityType.MOOSHROOM, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
         this.setAggressive(true);
-        this.setCustomName(Component.literal(ChatColor.GREEN + "TEST"));
+        this.setCustomName(Component.literal(ChatColor.GREEN + "TESTMOB"));
         this.setCustomNameVisible(true);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
         this.setHealth(10F);

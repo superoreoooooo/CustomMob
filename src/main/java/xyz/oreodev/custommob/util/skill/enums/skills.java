@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Particle;
 
 public enum skills {
+    TEST(Particle.HEART, 10, 1, 1, 1, ChatColor.AQUA + "TEST!"),
     SPIRIT_BIND(Particle.SCULK_SOUL, 100, 0, 0, 0, ChatColor.BLUE + "속박되었습니다!");
 
     private final Particle particle;
