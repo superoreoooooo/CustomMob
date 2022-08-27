@@ -45,12 +45,9 @@ public class Skill {
         if (SkillApiStatus) return;
         addCasters();
         SkillApiStatus = true;
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                for (LivingEntity livingEntity : skillCasters.keySet()) {
-                    execute(livingEntity, skillCasters.get(livingEntity).getSkill());
-                }
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
+            for (LivingEntity livingEntity : skillCasters.keySet()) {
+                execute(livingEntity, skillCasters.get(livingEntity).getSkill());
             }
         },0, 2);
     }
