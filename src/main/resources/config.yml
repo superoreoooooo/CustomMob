@@ -1,2 +1,12 @@
 settings:
   world: "world"
+skills:
+  bind:
+    cooldown: 10
+    effecttime: 1
+    particlecnt: 100
+    offX: 0
+    offY: 0
+    offZ: 0
+    msg: "속박되었습니다!"
+    msgColor: "BLUE"

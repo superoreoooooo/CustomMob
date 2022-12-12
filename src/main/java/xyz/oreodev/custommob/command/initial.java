@@ -3,13 +3,13 @@ package xyz.oreodev.custommob.command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import xyz.oreodev.custommob.util.skill.Skill;
+import xyz.oreodev.custommob.util.skill.Skillold;
 
 public class initial implements CommandExecutor {
-    private Skill skill;
+    private Skillold skill;
 
     public initial() {
-        this.skill = new Skill();
+        this.skill = new Skillold();
     }
 
     @Override

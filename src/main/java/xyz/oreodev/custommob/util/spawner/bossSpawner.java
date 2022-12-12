@@ -14,7 +14,6 @@ import xyz.oreodev.custommob.Entity.Lv1.Boss.LB1_farmer;
 import xyz.oreodev.custommob.Entity.Lv2.Boss.LB2_spirit;
 import xyz.oreodev.custommob.Entity.enums.enumBoss;
 import xyz.oreodev.custommob.Entity.test.TestBoss;
-import xyz.oreodev.custommob.util.skill.Skill;
 
 public class bossSpawner {
     public void summonMob(CommandSender sender, enumBoss bossName, Location location) {
